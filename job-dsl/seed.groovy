@@ -5,7 +5,7 @@ folder('DevOps')
 job('DevOps/Create Artifactory') {
     steps {
         description('Starts Artifactory docker container')
-        shell('ssh root@192.168.135.111 "/home/vagrant/start_app.sh"')
+        shell('ssh vagrant@192.168.135.111 "sudo /apps/start_artifactory.sh"')
     }
 }
 
@@ -53,7 +53,7 @@ job("DevOps/parameter job") {
 	scm {
 		git {
 			remote {
-			url 'https://github.com/path/to/your/repo.git'	
+			url 'https://github.com/path/to/your/repo.git'
 		}
 		branch '$branch'
 		}

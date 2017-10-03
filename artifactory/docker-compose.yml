@@ -1,0 +1,9 @@
+artifactory-5.4.6:
+  image: docker.bintray.io/jfrog/artifactory-pro:latest
+  container_name: artifactory-5.4.6
+  restart: always
+  environment:
+   - JVM_OPTS=-Xms2g -Xmx4g -Xss1536k -XX:+UseG1GC
+  ports:
+   - 8081:8081
+   - 5000-5002:5000-5002

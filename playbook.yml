@@ -1,0 +1,57 @@
+#Maintained By Matt Cole and Jeremy Carson
+---
+- hosts: all
+  become: yes
+  become_user: root
+  become_method: sudo
+  tasks:
+  - name: Install packages
+    yum: name={{item}} state=latest
+    with_items:
+    - epel-release
+    - cifs-utils
+    - git
+    - python-pip
+    - bind-utils
+
+  - name: Install Docker
+    shell: curl -fsSL https://get.docker.com/ | sh
+
+  - name: Install Docker-Compose
+    shell: curl -L https://github.com/docker/compose/releases/download/1.8.1/docker-compose-`uname -s`-`uname -m` > /usr/bin/docker-compose
+
+  - name: Add Execute Permission
+    file: path="/usr/bin/docker-compose" mode="u+x"
+
+  - name: Start Docker
+    service: name=docker state=started enabled=yes
+
+  - name: Add email git config
+    git_config:  name=user.email value="<your@email.com>" scope="global"
+
+  - name: Add username config
+    git_config:  name=user.name value="<your name>" scope="global"
+
+  - name: Creates directory
+    file: path=/root/.ssh/ state=directory
+
+  - name: update /usr/lib/systemd/system/docker.service
+    ini_file: dest=/usr/lib/systemd/system/docker.service
+              section=Service
+              option=ExecStart
+              value="/usr/bin/dockerd $DOCKER_OPTS"
+
+  - name: update /usr/lib/systemd/system/docker.service
+    ini_file: dest=/usr/lib/systemd/system/docker.service
+              section=Service
+              option=Environment
+              no_extra_spaces=true
+
+  - name: Reload docker
+    systemd: name=docker
+             daemon_reload=yes
+             state=reloaded
+
+  - name: Restart docker
+    systemd: name=docker
+             state=restarted
