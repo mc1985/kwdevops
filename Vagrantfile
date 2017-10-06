@@ -25,7 +25,7 @@ end
     h.vm.provision "file", source: "./jenkins" , destination: "/tmp"
     h.vm.provision "file", source: "./job-dsl" , destination: "/tmp"
     h.vm.provision "shell" do |s|
-      s.inline = "mkdir /apps; chmod 755 /apps; cp /tmp/jenkins/* /apps; cp -R /tmp/job-dsl/ /apps; chmod -R 755 /apps "
+      s.inline = "mkdir /apps; chmod 755 /apps; cp /tmp/jenkins/* /apps; cp -R /tmp/job-dsl/ /apps; chmod -R 755 /apps"
       s.privileged = true
     end
     h.vm.provision :shell, :inline => <<'EOF'
