@@ -11,6 +11,8 @@
 Vagrant.configure(2) do |config|
   config.hostmanager.enabled = true
   config.vm.provider "virtualbox" do |v|
+    v.memory = 2048
+    v.cpus = 2
 end
   # IF you want to sync folder from host to guest
   #config.vm.synced_folder ".", "/vagrant", type: "virtualbox"

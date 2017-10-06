@@ -5,7 +5,7 @@ folder('DevOps')
 job('DevOps/Create Artifactory') {
     steps {
         description('Starts Artifactory docker container')
-        shell('ssh -i "/home/vagrant/.ssh/id_rsa" vagrant@192.168.135.111 "sudo /apps/start_artifactory.sh"')
+        shell('ssh -i "/home/vagrant/.ssh/id_rsa" -oStrictHostKeyChecking=no vagrant@192.168.135.111 "sudo /apps/start_artifactory.sh"')
     }
 }
 
