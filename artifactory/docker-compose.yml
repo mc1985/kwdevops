@@ -1,5 +1,5 @@
 artifactory-5.4.6:
-  image: docker.bintray.io/jfrog/artifactory-pro:latest
+  image: docker pull docker.bintray.io/jfrog/artifactory-oss
   container_name: artifactory-5.4.6
   restart: always
   environment:
