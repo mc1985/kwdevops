@@ -2,9 +2,11 @@
 # README
 #
 # Requirements:
- 1. vagrant plugin install vagrant-hostmanager
- 2. vagrant up
- 3. vagrant ssh <node name> example:jenkins
+ 1. require NFS to be installed
+ 2. Install vagrant
+ 3. vagrant plugin install vagrant-hostmanager
+ 4. vagrant up
+ 5. vagrant ssh <node name> example:jenkins
 
 # Bring up jenkins
  1. vagrant ssh jenkins
