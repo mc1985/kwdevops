@@ -22,7 +22,7 @@ end
     h.vm.box_check_update = false
     h.vm.synced_folder "./", "/vagrant", id: "vagrant-root", type: "nfs"
     h.vm.network "private_network", ip: "192.168.135.10"
-    h.vm.provision "file", source: "./" , destination: "/tmp"
+    h.vm.provision "file", source: "./jenkins" , destination: "/tmp/jenkins"
     h.vm.provision "shell" do |s|
       s.inline = "mkdir /apps; chmod 755 /apps; cp -a /tmp/jenkins/. /apps; chmod -R 755 /apps"
       s.privileged = true
