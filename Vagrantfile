@@ -24,7 +24,7 @@ end
     h.vm.network "private_network", ip: "192.168.135.10"
     h.vm.provision "file", source: "./" , destination: "/tmp"
     h.vm.provision "shell" do |s|
-      s.inline = "mkdir /apps; chmod 755 /apps; cp /tmp/git-kwdevops/jenkins/. /apps; chmod -R 755 /apps"
+      s.inline = "mkdir /apps; chmod 755 /apps; cp -a /tmp/jenkins/. /apps; chmod -R 755 /apps"
       s.privileged = true
     end
     h.vm.provision :shell, :inline => <<'EOF'
