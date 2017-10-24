@@ -51,7 +51,7 @@ EOF
     h.vm.network "private_network", ip: "192.168.135.111"
     h.vm.provision "file", source: "./artifactory" , destination: "/tmp/artifactory"
     h.vm.provision "shell" do |s|
-      s.inline = "mkdir /apps; chmod 755 /apps; cp /tmp/artifactory/. /apps; chmod -R 755 /apps"
+      s.inline = "mkdir /apps; chmod 755 /apps; cp -a /tmp/artifactory/. /apps; chmod -R 755 /apps"
       s.privileged = true
     end
     h.vm.provision :shell, inline: 'cat /vagrant/control.pub >> /home/vagrant/.ssh/authorized_keys'
