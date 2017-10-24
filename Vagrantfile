@@ -20,7 +20,7 @@ end
   config.vm.box = "centos/7"
   config.vm.define "jenkins", primary: true do |h|
     h.vm.box_check_update = false
-    h.vm.synced_folder "./", "/vagrant", id: "vagrant-root", type: "nfs"
+    h.vm.synced_folder ".", "/vagrant", id: "vagrant-root", type: "nfs"
     h.vm.network "private_network", ip: "192.168.135.10"
     h.vm.provision "file", source: "./jenkins" , destination: "/tmp/jenkins"
     h.vm.provision "shell" do |s|
@@ -47,7 +47,7 @@ EOF
   end
   config.vm.define "artifactory" do |h|
     h.vm.box_check_update = false
-    h.vm.synced_folder "./", "/vagrant", id: "vagrant-root", type: "nfs"
+    h.vm.synced_folder ".", "/vagrant", id: "vagrant-root", type: "nfs"
     h.vm.network "private_network", ip: "192.168.135.111"
     h.vm.provision "file", source: "./artifactory" , destination: "/tmp/artifactory"
     h.vm.provision "shell" do |s|
